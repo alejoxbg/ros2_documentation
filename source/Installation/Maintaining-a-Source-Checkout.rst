@@ -15,77 +15,6 @@ Update your repository list
 
 Each ROS 2 release includes a ``ros2.repos`` file that contains the list of repositories and their version for that release.
 
-Release versions
-^^^^^^^^^^^^^^^^
-
-If you wish to update a particular release, you can get its repository list by specifying the codename of the release in the URL of the following step, e.g. foxy:
-
-.. tabs::
-
-  .. group-tab:: Linux
-
-    .. code-block:: bash
-
-       cd ~/ros2_ws
-       mv -i ros2.repos ros2.repos.old
-       wget https://raw.githubusercontent.com/ros2/ros2/release-foxy/ros2.repos
-
-  .. group-tab:: macOS
-
-    .. code-block:: bash
-
-       cd ~/ros2_ws
-       mv -i ros2.repos ros2.repos.old
-       wget https://raw.githubusercontent.com/ros2/ros2/release-foxy/ros2.repos
-
-  .. group-tab:: Windows
-
-    .. code-block:: bash
-
-       # CMD
-       > cd \dev\ros2
-       > curl -sk https://raw.githubusercontent.com/ros2/ros2/release-foxy/ros2.repos -o ros2.repos
-
-       # PowerShell
-       > cd \dev\ros2
-       > curl https://raw.githubusercontent.com/ros2/ros2/release-foxy/ros2.repos -o ros2.repos
-
-The format of the name of the release comes from the tag associated with the release `here <https://github.com/ros2/ros2/tags>`__.
-
-Release development branches
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you wish to checkout development branches for a particular release, you can get its repository list by specifying the codename of the release in the URL of the following step, e.g. foxy:
-
-.. tabs::
-
-  .. group-tab:: Linux
-
-    .. code-block:: bash
-
-       cd ~/ros2_ws
-       mv -i ros2.repos ros2.repos.old
-       wget https://raw.githubusercontent.com/ros2/ros2/foxy/ros2.repos
-
-  .. group-tab:: macOS
-
-    .. code-block:: bash
-
-       cd ~/ros2_ws
-       mv -i ros2.repos ros2.repos.old
-       wget https://raw.githubusercontent.com/ros2/ros2/foxy/ros2.repos
-
-  .. group-tab:: Windows
-
-    .. code-block:: bash
-
-       # CMD
-       > cd \dev\ros2
-       > curl -sk https://raw.githubusercontent.com/ros2/ros2/foxy/ros2.repos -o ros2.repos
-
-       # PowerShell
-       > cd \dev\ros2
-       > curl https://raw.githubusercontent.com/ros2/ros2/foxy/ros2.repos -o ros2.repos
 
 Latest development branches
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -126,7 +55,7 @@ If you wish to checkout the latest development code for the upcoming ROS release
 Update your repositories
 ------------------------
 
-You will notice that in the `ros2.repos <https://raw.githubusercontent.com/ros2/ros2/release-latest/ros2.repos>`__ file, each repository has a ``version`` associated with it that points to a particular commit hash, tag, or branch name.
+You will notice that in the `ros2.repos <https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos>`__ file, each repository has a ``version`` associated with it that points to a particular commit hash, tag, or branch name.
 It is possible that these versions refer to new tags/branches that your local copy of the repositories will not recognize as they are out-of-date.
 Because of this, you should update the repositories that you have already checked out with the following command:
 

@@ -9,7 +9,7 @@ Roadmap
 
 This page describes planned work for ROS 2.
 The set of planned features and development efforts should provide insight into the overall direction of ROS 2.
-If you would like to see other features on the roadmap, then please get in touch with us at info@openrobotics.org.
+If you would like to see other features on the roadmap, please get in touch with us at info@openrobotics.org.
 
 Galactic Roadmap
 ----------------
@@ -24,7 +24,16 @@ The "Size" is an estimated size of the task, where S means person-days to comple
 If you are working on a feature for ROS 2 Galactic and would like to have it listed, please open a pull request to `ROS 2 Documentation <https://github.com/ros2/ros2_documentation>`__.
 If you'd like to take on one of these tasks, please :ref:`get in touch with us <Help>`.
 
+.. raw:: html
+
+   <style>
+     .wy-table-responsive table td, .wy-table-responsive table th {
+       white-space: normal;
+     }
+   </style>
+
 .. list-table::
+   :widths: 40 10 25 25
    :header-rows: 1
 
    * - Task
@@ -46,15 +55,23 @@ If you'd like to take on one of these tasks, please :ref:`get in touch with us <
    * - Documentation: Consolidate ROS 2 documentation in an easy to find/search place
      - Large
      - Open Robotics
-     - 4th quarter 2020
+     - Complete
    * - Documentation: Automatically generate and host per-package documentation
      - Large
      - Open Robotics
+<<<<<<< HEAD
      - 4th quarter 2020
    * - Middleware: Switch to CycloneDDS as default RMW vendor
      - Small
      - ADLINK and Open Robotics
      - 1st quarter 2021
+=======
+     - 1st quarter 2021
+   * - Middleware: Switch to CycloneDDS as default RMW vendor
+     - Small
+     - ADLINK and Open Robotics
+     - Complete
+>>>>>>> 90525686d2ffcb274b161c805188141f33c0304e
    * - Galactic Release
      - Large
      - Open Robotics
@@ -77,8 +94,8 @@ If you'd like to take on one of these tasks, please :ref:`get in touch with us <
      - Complete
    * - rosbag2: Record /clock topic
      - Medium
-     -
-     -
+     - AWS RoboMaker
+     - 2nd quarter 2021
    * - Performance: Reduce the performance overhead of executors
      - Large
      -
@@ -86,11 +103,15 @@ If you'd like to take on one of these tasks, please :ref:`get in touch with us <
    * - Quality: Turn on more compiler warnings
      - Small
      - Open Robotics
+<<<<<<< HEAD
      - 2nd quarter 2021
+=======
+     - Complete
+>>>>>>> 90525686d2ffcb274b161c805188141f33c0304e
    * - Quality: Increase testing coverage of C/C++ packages
      - Large
-     -
-     -
+     - Open Robotics
+     - Complete
    * - Documentation: More intermediate/advanced tutorials
      - Medium
      - Open Robotics

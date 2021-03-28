@@ -3,17 +3,14 @@
 Tutorials
 =========
 
+The tutorials are a collection of step-by-step instructions meant to steadily build skills in ROS 2.
+
+The best way to approach the tutorials is to walk through them for the first time in order, as they build off of each other and are not meant to be comprehensive documentation.
+
+For quick solutions to more specific questions, see the :ref:`Guides`.
+
 Beginner
 --------
-
-The beginner-level tutorials are a collection of step-by-step instructions meant to introduce newcomers to ROS 2.
-It starts with using the Commandline Interface (CLI) tools, then moves on to the C++ and Python client libraries.
-
-.. warning::
-
-   Please walk through the tutorials for the first time in order, they build off of each other and are not meant to be comprehensive documentation.
-   These tutorials are under construction, so please share your `feedback <https://github.com/ros2/ros2_documentation/issues/new>`__.
-   The :ref:`Contact <Help>` page includes more ways to get help.
 
 Beginner: CLI Tools
 ^^^^^^^^^^^^^^^^^^^
@@ -59,30 +56,10 @@ Intermediate
    Tutorials/Actions/Creating-an-Action
    Tutorials/Actions/Writing-a-Cpp-Action-Server-Client
    Tutorials/Actions/Writing-a-Py-Action-Server-Client
-
-Working With Your First Package & Workspace
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. toctree::
-   :maxdepth: 1
-
-   Tutorials/Developing-a-ROS-2-Package
-   Tutorials/Colcon-Tutorial
-   Tutorials/Ament-CMake-Documentation
-
-Learning the ROS 2 Toolset
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. toctree::
-   :maxdepth: 1
-
    Tutorials/Launch-system
-   Tutorials/Node-arguments
-   Tutorials/Introspection-with-command-line-tools
-   Tutorials/RQt-Overview-Usage
    Tutorials/Composition
-   Tutorials/Ros2bag/Overriding-QoS-Policies-For-Recording-And-Playback
-   Tutorials/Topics/Topic-Statistics-Tutorial
-   Tutorials/Discovery-Server/Discovery-Server
+   Tutorials/Colcon-Tutorial
+   Tutorials/Monitoring-For-Parameter-Changes-CPP.rst
 
 Advanced
 --------
@@ -90,11 +67,10 @@ Advanced
 .. toctree::
    :maxdepth: 1
 
-   Tutorials/Sync-Vs-Async
-   Tutorials/Working-with-multiple-RMW-implementations
-   Tutorials/catment
-   Tutorials/Cross-compilation
+   Tutorials/Topics/Topic-Statistics-Tutorial
+   Tutorials/Discovery-Server/Discovery-Server
    Tutorials/Allocator-Template-Tutorial
+<<<<<<< HEAD
    Tutorials/Releasing-a-ROS-2-package-with-bloom
    Tutorials/Using-Python-Packages
 
@@ -115,6 +91,8 @@ Using Docker
    Tutorials/Run-2-nodes-in-a-single-docker-container
    Tutorials/Run-2-nodes-in-two-separate-docker-containers
    Tutorials/Deploying-ROS-2-on-IBM-Cloud
+=======
+>>>>>>> 90525686d2ffcb274b161c805188141f33c0304e
 
 Miscellaneous
 -------------
@@ -122,11 +100,10 @@ Miscellaneous
 .. toctree::
    :maxdepth: 1
 
-   Tutorials/Launch-files-migration-guide
+   Tutorials/Deploying-ROS-2-on-IBM-Cloud
    Tutorials/Eclipse-Oxygen-with-ROS-2-and-rviz2
    Tutorials/Building-ROS-2-on-Linux-with-Eclipse-Oxygen
    Tutorials/Building-Realtime-rt_preempt-kernel-for-ROS-2
-   Tutorials/Parameters-YAML-files-migration-guide
 
 Demos
 -----
@@ -152,7 +129,9 @@ Demos
 * `Turtlebot 2 demo using ROS 2 <https://github.com/ros2/turtlebot2_demo>`__.
 * `TurtleBot 3 demo using ROS 2 <http://emanual.robotis.com/docs/en/platform/turtlebot3/ros2_setup/>`__. [community-contributed]
 * `Simulate the TurtleBot 3 on ROS [community-contributed] <https://ubuntu.com/blog/simulate-the-turtlebot3>`__.
-* `MoveIt 2 demo using ROS 2 <https://github.com/ros-planning/moveit2/tree/master/moveit_demo_nodes/run_moveit_cpp>`__.
+* `Navigate TurtleBot 3 in simulation <https://github.com/cyberbotics/webots_ros2/wiki/Navigate-TurtleBot3>`__. [community-contributed]
+* `SLAM with TurtleBot3 in simulation <https://github.com/cyberbotics/webots_ros2/wiki/SLAM-with-TurtleBot3>`__. [community-contributed]
+* `MoveIt 2 arm motion planning demo <http://moveit2_tutorials.picknik.ai/>`__.
 * `Using tf2 with ROS 2 <Tutorials/tf2>`.
 * `Using URDF with robot_state_publisher <Tutorials/URDF/Using-URDF-with-Robot-State-Publisher>`.
 * `Write real-time safe code that uses the ROS 2 APIs <Tutorials/Real-Time-Programming>`.
@@ -164,3 +143,4 @@ Examples
 --------
 
 * `Python and C++ minimal examples <https://github.com/ros2/examples>`__.
+

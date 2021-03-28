@@ -54,13 +54,7 @@ You will need to run this command on every new shell you open to have access to 
 
       .. code-block:: console
 
-        source /opt/ros/<distro>/setup.bash
-
-      For example, if you installed ROS 2 Eloquent:
-
-      .. code-block:: console
-
-        source /opt/ros/eloquent/setup.bash
+        source /opt/ros/rolling/setup.bash
 
    .. group-tab:: macOS
 
@@ -89,7 +83,7 @@ If you don’t want to have to source the setup file every time you open a new s
 
       .. code-block:: console
 
-        echo "source /opt/ros/<distro>/setup.bash" >> ~/.bashrc
+        echo "source /opt/ros/rolling/setup.bash" >> ~/.bashrc
 
    .. group-tab:: macOS
 
@@ -105,7 +99,7 @@ If you don’t want to have to source the setup file every time you open a new s
 
       .. code-block:: console
 
-        C:\dev\ros2_foxy\local_setup.ps1
+        C:\dev\ros2_rolling\local_setup.ps1
 
       PowerShell will request permission to run this script everytime a new shell is opened.
 
@@ -166,13 +160,12 @@ If you ever have problems finding or using your ROS 2 packages, make sure that y
         set | findstr -i ROS
 
 Check that variables like ``ROS_DISTRO`` and ``ROS_VERSION`` are set.
-For example, if you're using Foxy, you would see:
 
 ::
 
   ROS_VERSION=2
   ROS_PYTHON_VERSION=3
-  ROS_DISTRO=foxy
+  ROS_DISTRO=rolling
 
 If the environment variables are not set correctly, return to the ROS 2 package installation section of the installation guide you followed.
 If you need more specific help (because environment setup files can come from different places), you can `get answers <https://answers.ros.org>`__ from the community.
@@ -184,7 +177,7 @@ If your lab or office has multiple different groups of computers running ROS 2, 
 
 The domain ID is used to segment the network in order to avoid interference between different groups of computers running ROS 2 on the same local area network. Machines with different domain IDs will not talk, nor interfere, with each other.
 
-If you run into issues having multiple computers talk to each other check `Troubleshooting </Troubleshooting>`. Additionally, there are multiple past conversations on our `Discourse <https://discourse.ros.org/>`_ and `Answers <https://answers.ros.org/questions/>`_ sites with more in-depth information.
+If you run into issues having multiple computers talk to each other, check the multiple past conversations on our `Discourse <https://discourse.ros.org/>`_ and `Answers <https://answers.ros.org/questions/>`_ sites with more in-depth information.
 
 Once you have determined a unique integer for your group of ROS 2 agents, you can set the environment variable with the following command:
 
@@ -239,23 +232,3 @@ Next steps
 ----------
 
 Now that you have a working ROS 2 installation and you know how to source its setup files, you can start learning the ins and outs of ROS 2 with the :ref:`turtlesim tool <Turtlesim>`.
-
-
-Related content
----------------
-
-See this video demonstration that shows an installation of ROS 2 on a Raspberry Pi:
-
-.. tabs::
-
-  .. group-tab:: Foxy
-
-    .. raw:: html
-
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/AmuLiA840fA" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-  .. group-tab:: Dashing
-
-    .. raw:: html
-
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/4VmVdKBrwPk" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

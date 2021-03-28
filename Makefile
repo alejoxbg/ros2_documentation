@@ -7,7 +7,12 @@ OPTS       =-c .
 
 help:
 	@$(BUILD) -M help "$(SOURCE)" "$(OUT)" $(OPTS)
+	@echo "  multiversion to build documentation for all branches"
 
-.PHONY: help Makefile
+multiversion: Makefile
+	sphinx-multiversion $(OPTS) "$(SOURCE)" build/html
+	@echo "<html><head><meta http-equiv=\"refresh\" content=\"0; url='foxy/index.html'\" /></head></html>" > build/html/index.html
+
+.PHONY: help Makefile multiversion
 %: Makefile
 	@$(BUILD) -M $@ "$(SOURCE)" "$(OUT)" $(OPTS)

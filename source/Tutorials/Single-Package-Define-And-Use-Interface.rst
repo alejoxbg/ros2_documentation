@@ -22,8 +22,6 @@ Background
 
 In a :ref:`previous tutorial <CustomInterfaces>`, you learned how to create custom msg and srv interfaces.
 
-.. In previous tutorials, you learned how to create :ref:`custom msg and srv interfaces <CustomInterfaces>` and :ref:`action interfaces <ActionCreate>`. (When actions redo is done)
-
 While best practice is to declare interfaces in dedicated interface packages, sometimes it can be convenient to declare, create and use an interface all in one package.
 
 Recall that interfaces can currently only be defined in CMake packages.
@@ -134,6 +132,7 @@ Also make sure you export the message runtime dependency:
    ament_export_dependencies(rosidl_default_runtime)
 
 Now you're ready to generate source files from your msg definition.
+We'll skip the compile step for now as we do it all together below in step 4.
 
 2.2 (Extra) Set multiple interfaces
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

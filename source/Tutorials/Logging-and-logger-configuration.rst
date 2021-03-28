@@ -5,7 +5,7 @@
 Logging and logger configuration demo
 =====================================
 
-See `the logging page <../Concepts/Logging>` for details on available functionality.
+See `the logging page <../Concepts/About-Logging>` for details on available functionality.
 
 In this demo, different types of log calls are shown and the severity level of different loggers is configured locally and externally.
 
@@ -21,10 +21,6 @@ Note that the first message will only be logged once, though the line is reached
 
 Logging directory configuration
 -------------------------------
-
-.. note::
-
-   The logging directory can only be configured starting in Galactic.
 
 The logging directory can be configured through two environment variables: ``ROS_LOG_DIR`` and ``ROS_HOME``.
 The logic is as follows:
@@ -166,19 +162,10 @@ Logger level configuration: command line
 As of the Bouncy ROS 2 release, the severity level for loggers that have not had their severity set explicitly can be configured from the command line.
 Restart the demo including the following command line argument:
 
-.. tabs::
 
-  .. group-tab:: Eloquent and newer
+.. code-block:: bash
 
-    .. code-block:: bash
-
-       ros2 run logging_demo logging_demo_main --ros-args --log-level debug
-
-  .. group-tab:: Dashing
-
-    .. code-block:: bash
-
-      ros2 run logging_demo logging_demo_main __log_level:=debug
+   ros2 run logging_demo logging_demo_main --ros-args --log-level debug
 
 This configures the default severity for any unset logger to the debug severity level.
 You should see debug output from loggers from the demo itself and from the ROS 2 core.
@@ -265,7 +252,6 @@ You should see that debug, warn, error and fatal logs aren't colorized now.
 Default stream for console output
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In Dashing and Eloquent, the output from DEBUG and INFO severity are printed out to stdout, and the output from WARN, ERROR, and FATAL are printed to stderr.
 In Foxy and later, the output from all debug levels goes to stderr by default.  It is possible to force all output to go to stdout by setting the ``RCUTILS_LOGGING_USE_STDOUT`` environment variable to ``1``.
 For example:
 
@@ -293,44 +279,6 @@ For example:
 Line buffered console output
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Dashing and Eloquent
-""""""""""""""""""""
-
-By default, INFO and DEBUG log calls aren't line buffered.
-You can force it using ``RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED`` environment variable.
-For example:
-
-.. tabs::
-
-  .. group-tab:: Linux
-
-    .. code-block:: bash
-
-      export RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED=1
-
-  .. group-tab:: macOS
-
-    .. code-block:: bash
-
-      export RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED=1
-
-  .. group-tab:: Windows
-
-    .. code-block:: bash
-
-      set "RCUTILS_CONSOLE_STDOUT_LINE_BUFFERED=1"
-
-Then run:
-
-.. code-block:: bash
-
-    ros2 run logging_demo logging_demo_main
-
-The output should look as before.
-For details about I/O buffering, see `buffering concepts <https://www.gnu.org/software/libc/manual/html_node/Buffering-Concepts.html>`_.
-
-Foxy
-""""
 
 By default, all logging output is unbuffered.
 You can force it to be buffered by setting the ``RCUTILS_LOGGING_BUFFERED_STREAM`` environment variable to 1.

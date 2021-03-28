@@ -5,6 +5,10 @@
 Migration guide from ROS 1
 ==========================
 
+.. contents:: Table of Contents
+   :depth: 2
+   :local:
+
 There are two different kinds of package migrations:
 
 * Migrating the source code of an existing package from ROS 1 to ROS 2 with the intent that a significant part of the source code will stay the same or at least similar.
@@ -1019,6 +1023,15 @@ Quick reference
 +------------+-------------+----------------+
 | namespace  | __ns:=foo   | -r __ns:=foo   |
 +------------+-------------+----------------+
+
+
+More examples and tools
+^^^^^^^^^^^^^^^^^^^^^^^
+
+- Launch File migrator that converts a ROS 1 XML launch file to a ROS 2 Python launch file: https://github.com/aws-robotics/ros2-launch-file-migrator
+-  Amazon has exposed their tools for porting ROS 1 robots to ROS 2
+   https://github.com/awslabs/ros2-migration-tools/tree/master/porting\_tools
+
 
 Licensing
 ---------

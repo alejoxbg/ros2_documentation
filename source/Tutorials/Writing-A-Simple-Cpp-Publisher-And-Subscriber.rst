@@ -20,6 +20,7 @@ Background
 In this tutorial, the nodes will pass information in the form of string messages to each other over a :ref:`topic <ROS2Topics>`.
 The example used here is a simple “talker” and “listener” system; one node publishes data and the other subscribes to the topic so it can receive that data.
 
+The code used in these examples can be found `here <https://github.com/ros2/examples/tree/master/rclcpp/topics>`__.
 
 Prerequisites
 -------------
@@ -34,7 +35,7 @@ Tasks
 
 Open a new terminal and :ref:`source your ROS 2 installation <ConfigROS2>` so that ``ros2`` commands will work.
 
-Navigate into the ``dev_ws`` directory created in a previous tutorial.
+Navigate into the ``dev_ws`` directory created in a :ref:`previous tutorial <new-directory>`.
 
 Recall that packages should be created in the ``src`` directory, not the root of the workspace.
 So, navigate into ``dev_ws/src``, and run the package creation command:
@@ -114,15 +115,15 @@ Open the file using your preferred text editor.
         rclcpp::TimerBase::SharedPtr timer_;
         rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
         size_t count_;
-      };
+    };
 
-      int main(int argc, char * argv[])
-      {
-        rclcpp::init(argc, argv);
-        rclcpp::spin(std::make_shared<MinimalPublisher>());
-        rclcpp::shutdown();
-        return 0;
-      }
+    int main(int argc, char * argv[])
+    {
+      rclcpp::init(argc, argv);
+      rclcpp::spin(std::make_shared<MinimalPublisher>());
+      rclcpp::shutdown();
+      return 0;
+    }
 
 2.1 Examine the code
 ~~~~~~~~~~~~~~~~~~~~
@@ -210,7 +211,7 @@ Navigate one level back to the ``dev_ws/src/cpp_pubsub`` directory, where the ``
 
 Open ``package.xml`` with your text editor.
 
-As mentioned in the previous tutorial, make sure to fill in the ``<description>``, ``<maintainer>`` and ``<license>`` tags:
+As mentioned in the :ref:`previous tutorial <CreatePkg>`, make sure to fill in the ``<description>``, ``<maintainer>`` and ``<license>`` tags:
 
 .. code-block:: xml
 
@@ -397,7 +398,7 @@ Since this node has the same dependencies as the publisher node, there’s nothi
 
 Reopen ``CMakeLists.txt`` and add the executable and target for the subscriber node below the publisher’s entries.
 
-.. code-block:: console
+.. code-block:: cmake
 
   add_executable(listener src/subscriber_member_function.cpp)
   ament_target_dependencies(listener rclcpp std_msgs)
@@ -422,7 +423,7 @@ It's good practice to run ``rosdep`` in the root of your workspace (``dev_ws``) 
 
       .. code-block:: console
 
-            rosdep install -i --from-path src --rosdistro <distro> -y
+            rosdep install -i --from-path src --rosdistro rolling -y
 
    .. group-tab:: macOS
 
@@ -501,7 +502,7 @@ Summary
 You created two nodes to publish and subscribe to data over a topic.
 Before compiling and running them, you added their dependencies and executables to the package configuration files.
 
-The code used in these examples can be found `here <https://github.com/ros2/examples/tree/master/rclcpp/topics>`__.
+
 
 Next steps
 ----------
@@ -512,4 +513,4 @@ Again, you can choose to write it in either :ref:`C++ <CppSrvCli>` or :ref:`Pyth
 Related content
 ---------------
 
-* There are several ways you could write a publisher and subscriber in C++; check out the ``minimal_publisher`` and ``minimal_subscriber`` packages in the `ros2/examples <https://github.com/ros2/examples/tree/master/rclcpp/topics>`_ repo.
+There are several ways you could write a publisher and subscriber in C++; check out the ``minimal_publisher`` and ``minimal_subscriber`` packages in the `ros2/examples <https://github.com/ros2/examples/tree/master/rclcpp/topics>`_ repo.

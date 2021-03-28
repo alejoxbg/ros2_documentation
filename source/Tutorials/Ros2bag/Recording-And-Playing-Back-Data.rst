@@ -31,11 +31,11 @@ If you've installed from Debians on Linux and your system doesn’t recognize th
 
 .. code-block:: console
 
-  sudo apt-get install ros-<distro>-ros2bag \
-                       ros-<distro>-rosbag2-converter-default-plugins \
-                       ros-<distro>-rosbag2-storage-default-plugins
+  sudo apt-get install ros-rolling-ros2bag \
+                       ros-rolling-rosbag2-converter-default-plugins \
+                       ros-rolling-rosbag2-storage-default-plugins
 
-This tutorial talks about concepts covered in previous tutorials, like nodes and :ref:`topics <ROS2Topics>`.
+This tutorial talks about concepts covered in previous tutorials, like :ref:`nodes <ROS2Nodes>` and :ref:`topics <ROS2Topics>`.
 It also uses the :ref:`turtlesim package <Turtlesim>`.
 
 As always, don’t forget to source ROS 2 in :ref:`every new terminal you open <ConfigROS2>`.

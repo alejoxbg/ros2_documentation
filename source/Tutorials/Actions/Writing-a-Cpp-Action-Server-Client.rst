@@ -37,9 +37,8 @@ As we saw in the :ref:`CreatePkg` tutorial, we need to create a new package to h
 1.1 Creating the action_tutorials_cpp package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Go into the action workspace you created in the previous tutorial, and create a new package for the C++ action server:
+Go into the action workspace you created in the :ref:`previous tutorial <ActionCreate>` (remember to source the workspace), and create a new package for the C++ action server:
 
-(Remember to :ref:`source the workspace from the previous tutorial <ActionCreate>` first.)
 
 .. tabs::
 
@@ -209,7 +208,7 @@ To get it to compile and run, we need to do a couple of additional things.
 First we need to setup the CMakeLists.txt so that the action server is compiled.
 Open up ``action_tutorials_cpp/CMakeLists.txt``, and add the following right after the ``find_package`` calls:
 
-.. code-block:: console
+.. code-block:: cmake
 
   add_library(action_server SHARED
     src/fibonacci_action_server.cpp)
@@ -338,7 +337,7 @@ To get it to compile and run, we need to do a couple of additional things.
 First we need to setup the CMakeLists.txt so that the action client is compiled.
 Open up ``action_tutorials_cpp/CMakeLists.txt``, and add the following right after the ``find_package`` calls:
 
-.. code-block:: console
+.. code-block:: cmake
 
   add_library(action_client SHARED
     src/fibonacci_action_client.cpp)

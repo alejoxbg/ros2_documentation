@@ -51,8 +51,42 @@ Thus the default value stays the same: ``~/.ros/log``.
 
 Related PRs: `ros2/rcl_logging#53 <https://github.com/ros2/rcl_logging/pull/53>`_ and `ros2/launch#460 <https://github.com/ros2/launch/pull/460>`_.
 
+Externally configure QoS at start-up
+------------------------------------
+
+It is now possible to externally configure the QoS settings for a node at start-up time.
+QoS settings are **not** configurable during runtime; they are only configurable at start-up.
+Node authors must opt-in to enable changing QoS settings at start-up.
+If the feature is enabled on a node, then QoS settings can be set with ROS parameters when a node first starts.
+
+`Demos in C++ and Python can be found here. <https://github.com/ros2/demos/tree/a66f0e894841a5d751bce6ded4983acb780448cf/quality_of_service_demo#qos-overrides>`_
+
+See the `design document for more details <http://design.ros2.org/articles/qos_configurability.html>`_.
+
+Note, user code handling parameter changes with registered callbacks should avoid rejecting updates for unknown parameters.
+It was considered bad practice prior to Galactic, but with externally configurable QoS enabled it will result in a hard failure.
+
+Related PRs: `ros2/rclcpp#1408 <https://github.com/ros2/rclcpp/pull/1408>`_ and `ros2/rclpy#635 <https://github.com/ros2/rclpy/pull/635>`_
+
 Changes since the Foxy release
 ------------------------------
+
+Default RMW vendor changed to Cyclone DDS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During the Galactic development process, the ROS 2 Technical Steering Committee `voted <https://discourse.ros.org/t/ros-2-galactic-default-middleware-announced/18064>`__ to change the default ROS middleware (RMW) to Cyclone DDS.
+Without any configuration changes, users will get Cyclone DDS by default.
+Fast-DDS and Connext are still Tier-1 supported RMW vendors, and users can opt-in to use one of these RMWs at their discretion by using the ``RMW_IMPLEMENTATION`` environment variable.
+See the `Working with multiple RMW implementations guide <../Guides/Working-with-multiple-RMW-implementations>` for more information.
+
+New RMW API
+^^^^^^^^^^^
+
+``rmw_qos_profile_check_compatible`` is a new function for checking the compatibility of two QoS profiles.
+
+RMW vendors should implement this API for some features in ROS 2 packages to work correctly.
+
+Related PR: `ros2/rmw#299 <https://github.com/ros2/rmw/pull/299>`_
 
 nav2
 ^^^^
@@ -65,6 +99,15 @@ tf2_ros Python split out of tf2_ros
 
 The Python code that used to live in tf2_ros has been moved into its own package named tf2_ros_py.
 Any existing Python code that depends on tf2_ros will continue to work, but the package.xml of those packages should be amended to ``exec_depend`` on tf2_ros_py.
+
+tf2_ros Python TransformListener uses global namespace
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Python ``TransformListener`` now subscribes to ``/tf`` and ``/tf_static`` in the global namespace.
+Previously, it was susbcribing in the node's namespace.
+This means that the node's namespace will no longer have an effect on the ``/tf`` and ``/tf_static`` subscriptions.
+
+Related PR: `ros2/geometry2#390 <https://github.com/ros2/geometry2/pull/390>`_
 
 rclcpp
 ^^^^^^
@@ -151,14 +194,71 @@ you should now replace it with:
 ``std::stringstream`` types are still accepted as arguments to the stream logging macros.
 See `ros2/rclcpp#1442 <https://github.com/ros2/rclcpp/pull/1442>`_ for more details.
 
+<<<<<<< HEAD
+=======
+Parameter types are now static by default
+"""""""""""""""""""""""""""""""""""""""""
+
+Previously, the type of a parameter could be changed when a parameter was set.
+For example, if a parameter was declared as an integer, a later call to set the parameter could change that type to a string.
+This behavior could lead to bugs, and is rarely what the user wants.
+As of Galactic parameter types are static by default, and attempts to change the type will fail.
+If the previous dynamic behavior is desired, there is an mechanism to opt it in (see the code below).
+
+.. code-block:: cpp
+
+    // declare integer parameter with default value, trying to set it to a different type will fail.
+    node->declare_parameter("my_int", 5);
+    // declare string parameter with no default and mandatory user provided override.
+    // i.e. the user must pass a parameter file setting it or a command line rule -p <param_name>:=<value>
+    node->declare_parameter("string_mandatory_override", rclcpp::PARAMETER_STRING);
+    // Conditionally declare a floating point parameter with a mandatory override.
+    // Useful when the parameter is only needed depending on other conditions and no default is reasonable.
+    if (mode == "modeA") {
+        node->declare_parameter("conditionally_declare_double_parameter", rclcpp::PARAMETER_DOUBLE);
+    }
+    // You can also get the old dynamic typing behavior if you want:
+    rcl_interfaces::msg::ParameterDescriptor descriptor;
+    descriptor.dynamic_typing = true;
+    node->declare_parameter("dynamically_typed_param", rclcpp::ParameterValue{}, descriptor);
+
+For more details see https://github.com/ros2/rclcpp/blob/master/rclcpp/doc/notes_on_statically_typed_parameters.md.
+
+>>>>>>> 90525686d2ffcb274b161c805188141f33c0304e
 rclpy
-^^^^^^
+^^^^^
 
 Removal of deprecated Node.set_parameters_callback
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 Can be replaced with ``Node.add_on_set_parameters_callback``.
 See `ros2/rclpy#504 <https://github.com/ros2/rclpy/pull/504>`_ for some examples.
+
+Parameter types are now static by default
+"""""""""""""""""""""""""""""""""""""""""
+
+Previously, the type of a parameter could be changed when a parameter was set.
+For example, if a parameter was declared as an integer, a later call to set the parameter could change that type to a string.
+This behavior could lead to bugs, and is rarely what the user wants.
+As of Galactic parameter types are static by default, and attempts to change the type will fail.
+If the previous dynamic behavior is desired, there is an mechanism to opt it in (see the code below).
+
+.. code-block:: python
+
+    # declare integer parameter with default value, trying to set it to a different type will fail.
+    node.declare_parameter('my_int', 5)
+    # declare string parameter with no default and mandatory user provided override.
+    # i.e. the user must pass a parameter file setting it or a command line rule -p <param_name>:=<value>
+    node.declare_parameter('string_mandatory_override', rclpy.Parameter.Type.STRING)
+    # Conditionally declare a floating point parameter with a mandatory override.
+    # Useful when the parameter is only needed depending on other conditions and no default is reasonable.
+    if mode == 'modeA':
+        node.declare_parameter('conditionally_declare_double_parameter', rclpy.Parameter.Type.DOUBLE)
+    # You can also get the old dynamic typing behavior if you want
+    node.declare_parameter('dynamically_typed_param', descriptor=rcl_interfaces.msg.ParameterDescriptor(dynamic_typing=True))
+
+For more details see https://github.com/ros2/rclcpp/blob/master/rclcpp/doc/notes_on_statically_typed_parameters.md.
+
 
 rclcpp_action
 ^^^^^^^^^^^^^
@@ -192,6 +292,58 @@ The signature of the function was changed because it was semantically different 
 This only affects authors of rmw implementations using the introspection typesupport.
 
 For further details, see `ros2/rosidl#531 <https://github.com/ros2/rosidl/pull/531>`_.
+
+rcl_lifecycle and rclcpp_lifecycle
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+RCL's lifecycle state machine gets new init API
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+The lifecycle state machine in rcl_lifecycle was modified to expect a newly introduced options struct, combining general configurations for the state machine.
+The option struct allows to indicate whether the state machine shall be initialized with default values, whether its attached services are active and which allocator to be used.
+
+.. code-block:: c
+
+  rcl_ret_t
+  rcl_lifecycle_state_machine_init(
+    rcl_lifecycle_state_machine_t * state_machine,
+    rcl_node_t * node_handle,
+    const rosidl_message_type_support_t * ts_pub_notify,
+    const rosidl_service_type_support_t * ts_srv_change_state,
+    const rosidl_service_type_support_t * ts_srv_get_state,
+    const rosidl_service_type_support_t * ts_srv_get_available_states,
+    const rosidl_service_type_support_t * ts_srv_get_available_transitions,
+    const rosidl_service_type_support_t * ts_srv_get_transition_graph,
+    const rcl_lifecycle_state_machine_options_t * state_machine_options);
+
+RCL's lifecycle state machine stores allocator instance
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+The options struct (discussed above) entails an instance of the allocator being used for initializing the state machine.
+This options struct and there the embodied allocator are being stored within the lifecycle state machine.
+As a direct consequence, the ``rcl_lifecycle_fini function`` no longer expects an allocator in its fini function but rather uses the allocator set in the options struct for deallocating its internal data structures.
+
+.. code-block:: c
+
+  rcl_ret_t
+  rcl_lifecycle_state_machine_fini(
+    rcl_lifecycle_state_machine_t * state_machine,
+    rcl_node_t * node_handle);
+
+RCLCPP's lifecycle node exposes option to not instantiate services
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+In order to use rclpp's lifecycle nodes without exposing its internal services such as ``change_state``, ``get_state`` et. al., the constructor of a lifecycle node has a newly introduced parameter indicating whether or not the services shall be available.
+This boolean flag is set to true by default, not requiring any changes to existing API if not wished.
+
+.. code-block:: c++
+
+  explicit LifecycleNode(
+    const std::string & node_name,
+    const rclcpp::NodeOptions & options = rclcpp::NodeOptions(),
+    bool enable_communication_interface = true);
+
+Related PRs: `ros2/rcl#882 <https://github.com/ros2/rcl/pull/882>`_ and `ros2/rclcpp#1507 <https://github.com/ros2/rclcpp/pull/1507>`_
 
 Known Issues
 ------------

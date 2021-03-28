@@ -16,9 +16,16 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
+
 import itertools
+import os
+import sys
+import time
+
 from docutils.parsers.rst import Directive
+
+sys.path.append(os.path.abspath('./sphinx-multiversion'))
+
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -33,9 +40,9 @@ default_role = 'any'
 suppress_warnings = ['image.nonlocal_uri']
 
 # General information about the project.
-project = u'ros2 documentation'
-copyright = u'2018, Open Robotics'
-author = u'Open Robotics'
+project = 'ROS 2 documentation'
+author = 'Open Robotics'
+copyright = '{}, {}'.format(time.strftime('%Y'), author)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -66,18 +73,18 @@ pygments_style = 'sphinx'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-extensions = ['sphinx.ext.intersphinx', 'sphinx_tabs.tabs']
+extensions = ['sphinx.ext.intersphinx', 'sphinx_tabs.tabs', 'sphinx_multiversion', 'sphinx_rtd_theme']
 
 # Intersphinx mapping
 
 intersphinx_mapping = {
-    'catkin_pkg':    ('http://docs.ros.org/independent/api/catkin_pkg/html', None),
-    'jenkins_tools': ('http://docs.ros.org/independent/api/jenkins_tools/html', None),
-    'rosdep':        ('http://docs.ros.org/independent/api/rosdep/html', None),
-    'rosdistro':     ('http://docs.ros.org/independent/api/rosdistro/html', None),
-    'rosinstall':    ('http://docs.ros.org/independent/api/rosinstall/html', None),
-    'rospkg':        ('http://docs.ros.org/independent/api/rospkg/html', None),
-    'vcstools':      ('http://docs.ros.org/independent/api/vcstools/html', None)
+    'catkin_pkg':    ('http://docs.ros.org/en/independent/api/catkin_pkg/html', None),
+    'jenkins_tools': ('http://docs.ros.org/en/independent/api/jenkins_tools/html', None),
+    'rosdep':        ('http://docs.ros.org/en/independent/api/rosdep/html', None),
+    'rosdistro':     ('http://docs.ros.org/en/independent/api/rosdistro/html', None),
+    'rosinstall':    ('http://docs.ros.org/en/independent/api/rosinstall/html', None),
+    'rospkg':        ('http://docs.ros.org/en/independent/api/rospkg/html', None),
+    'vcstools':      ('http://docs.ros.org/en/independent/api/vcstools/html', None)
 }
 
 # -- Options for HTML output ----------------------------------------------
@@ -85,7 +92,34 @@ intersphinx_mapping = {
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
+html_theme_options = {
+    'collapse_navigation': False,
+    'sticky_navigation': True,
+    'navigation_depth': -1,
+}
+
+html_context = {
+    'display_github': True,
+    'github_user': 'ros2',
+    'github_repo': 'ros2_documentation',
+    'github_version': 'rolling/source/',  # Will be overridden when building multiversion
+}
+
+templates_path = [
+    "source/_templates",
+]
+
+# smv_tag_whitelist = None
+
+smv_branch_whitelist = r'^(rolling|foxy|eloquent|dashing|crystal)$'
+
+
+smv_released_pattern = r'^refs/(heads|remotes/[^/]+)/(foxy|eloquent|dashing|crystal).*$'
+smv_remote_whitelist = r'^(origin)$'
+smv_latest_version = 'foxy'
+
+
 
 html_favicon = 'favicon.ico'
 
@@ -102,6 +136,7 @@ html_sourcelink_suffix = ''
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'ros2_docsdoc'
 
+html_baseurl = 'https://docs.ros.org/en'
 
 class RedirectFrom(Directive):
 
@@ -120,8 +155,9 @@ class RedirectFrom(Directive):
         from sphinx.builders.html import StandaloneHTMLBuilder
         if not isinstance(app.builder, StandaloneHTMLBuilder):
             return
+
         redirect_html_fragment = """
-            <link rel="canonical" href="{url}" />
+            <link rel="canonical" href="{base_url}/{url}" />
             <meta http-equiv="refresh" content="0; url={url}" />
             <script>
                 window.location.href = '{url}';
@@ -169,6 +205,7 @@ class RedirectFrom(Directive):
                     ),
                     'title': os.path.basename(redirect_url),
                     'metatags': redirect_html_fragment.format(
+                        base_url=app.config.html_baseurl,
                         url=app.builder.get_relative_uri(
                             redirect_url, canonical_url
                         )
@@ -203,9 +240,24 @@ def make_router(origin, destination):
                 return newnode
     return _missing_reference
 
+def smv_rewrite_configs(app, config):
+    # When using Sphinx multiversion, there is no way at initial configuration time
+    # to determine the distribution we are currently targeting (conf.py is read before
+    # external defines are setup, and environment variables aren't passed through to
+    # conf.py).  Instead, hook into the 'config-inited' event which is late enough
+    # to rewrite the various configuration items with the current version.
+    if app.config.smv_current_version != '':
+        app.config.html_baseurl = app.config.html_baseurl + '/' + app.config.smv_current_version
+        app.config.project = 'ROS 2 Documentation: ' + app.config.smv_current_version.title()
+
+        if app.config.smv_current_version != 'rolling':
+            app.config.html_logo = 'source/Releases/' + app.config.smv_current_version + '-small.png'
+
+def github_link_rewrite_branch(app, pagename, templatename, context, doctree):
+    if app.config.smv_current_version != '':
+        context['github_version'] = app.config.smv_current_version + '/source/'
 
 def setup(app):
+    app.connect('config-inited', smv_rewrite_configs)
+    app.connect('html-page-context', github_link_rewrite_branch)
     RedirectFrom.register(app)
-    app.connect('missing-reference', make_router(
-        'Installation', 'Installation/Eloquent'
-    ))

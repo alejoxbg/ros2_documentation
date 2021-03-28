@@ -60,15 +60,10 @@ Development Guides
    :titlesonly:
    :maxdepth: 1
 
-   Contributing/ROS-2-On-boarding-Guide
    Contributing/Developer-Guide
    Contributing/Code-Style-Language-Versions
-   Contributing/Design-Guide
    Contributing/Quality-Guide
-   Contributing/Build-Cop-and-Build-Farmer-Guide
    Contributing/Migration-Guide
-   Contributing/Examples-and-Tools-for-ROS1----ROS2-Migrations
-   Contributing/Inter-Sphinx-Support
 
 What to work on
 ^^^^^^^^^^^^^^^

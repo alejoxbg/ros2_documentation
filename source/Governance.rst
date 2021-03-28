@@ -10,153 +10,177 @@ That approach has worked well enough, as evidenced by the widespread adoption of
 
 But with ROS 2, we want to broaden participation to accelerate ROS 2 delivery, starting with these areas: determining the roadmap, developing core tools and libraries, and establishing working groups to focus on important topics.
 To that end, we've established a Technical Steering Committee (TSC).
-As described in the :download:`charter <Governance/ros2-tsc-charter.pdf>`, the TSC comprises representatives of organizations that are contributing to the development of ROS 2, and it has the responsibility to set the technical direction for the project.
+As described in the :ref:`charter <ROS2TSCCharter>`, the TSC comprises representatives of organizations that are contributing to the development of ROS 2, and it has the responsibility to set the technical direction for the project.
 
 Packages relevant to this ROS 2 TSC are listed in `REP 2005 <https://www.ros.org/reps/rep-2005.html>`_.
 
 Meeting notes can be found on `ROS Discourse <https://discourse.ros.org/tag/tsc>`_.
 
-The current members of the ROS 2 TSC are (18 as of 2020-11-16):
+The current members of the ROS 2 TSC are (19 as of 2021-02-22):
 
 .. |adlink| image:: Governance/adlink.svg
-   :alt: ADLINK Technology logo
-   :height: 35px
-   :target: https://www.adlinktech.com
-
 .. |amazon| image:: Governance/amazon.svg
-   :alt: Amazon logo
-   :height: 35px
-   :target: https://www.amazon.com
-
 .. |apex| image:: Governance/apex.png
-   :alt: Apex.AI logo
-   :height: 35px
-   :target: https://www.apex.ai
-
 .. |bosch| image:: Governance/bosch_75h.jpg
-   :alt: Bosch logo
-   :height: 35px
-   :target: https://www.bosch.com/
-
 .. |canonical| image:: Governance/ubuntu.svg
-   :alt: Ubuntu logo
-   :height: 35px
-   :target: https://ubuntu.com/
-
 .. |eprosima| image:: Governance/eprosima.svg
-   :alt: eProsima logo
-   :height: 35px
-   :target: https://eprosima.com/
-
 .. |gvsc| image:: Governance/gvsc.png
-   :alt: GVSC logo
-   :height: 35px
-   :target: https://gvsc.army.mil/
-
 .. |intel| image:: Governance/intel.svg
-   :alt: Intel logo
-   :height: 35px
-   :target: https://www.intel.com
-
+.. |irobot| image:: Governance/irobot.png
 .. |lge| image:: Governance/lge.svg
-   :alt: LG Electronics logo
-   :height: 35px
-   :target: https://www.lg.com/
-
 .. |microsoft| image:: Governance/microsoft.svg
-   :alt: Microsoft logo
-   :height: 35px
-   :target: https://www.microsoft.com
-
 .. |openrobotics| image:: Governance/openrobotics-logo-stacked.png
-   :alt: Open Robotics logo
-   :height: 35px
-   :target: https://www.openrobotics.org
-
 .. |picknik| image:: Governance/picknik.jpg
-   :alt: PickNik logo
-   :height: 35px
-   :target: https://picknik.ai/
-
 .. |robotis| image:: Governance/robotis.png
-   :alt: ROBOTIS logo
-   :height: 35px
-   :target: https://www.robotis.com/
-
 .. |rover| image:: Governance/rover.png
-   :alt: Rover Robotics logo
-   :height: 35px
-   :target: https://roverrobotics.com/
-
 .. |samsung| image:: Governance/samsung.svg
-   :alt: Samsung logo
-   :height: 35px
-   :target: https://www.samsung.com
-
-.. |tieriv| image:: Governance/TierIV.png
-   :alt: Tier IV logo
-   :height: 35px
-   :target: https://www.tier4.jp/
-
+.. |sony| image:: Governance/sony.png
 .. |tri| image:: Governance/tri_logo_landscape-web.svg
-   :alt: TRI logo
-   :height: 35px
-   :target: https://www.tri.global/
-
 .. |windriver| image:: Governance/windriver.png
-   :alt: Wind River logo
-   :height: 35px
-   :target: https://www.windriver.com/
 
-.. list-table::
-   :align: center
-   :widths: auto
+.. raw:: html
 
-   * - |adlink|
-     - ADLINK Technology: Joe Speed
-   * - |amazon|
-     - Amazon: Aaron Blasdel
-   * - |apex|
-     - Apex.AI: Dejan Pangercic
-   * - |bosch|
-     - Bosch: Karsten Knese
-   * - |canonical|
-     - Canonical: Kyle Fazzari
-   * - |eprosima|
-     - eProsima: Jaime Martin Losa
-   * - |intel|
-     - Intel: Harold Yang
-   * - |lge|
-     - LG Electronics: Lokesh Kumar Goel
-   * - |microsoft|
-     - Microsoft: Sean Yen
-   * - |openrobotics|
-     - Open Robotics: Chris Lalancette
-   * - |picknik|
-     - PickNik: Dave Coleman
-   * - |robotis|
-     - ROBOTIS: Will Son
-   * - |rover|
-     - Rover Robotics: Nick Fragale
-   * - |samsung|
-     - Samsung: Steven Macenski
-   * - |gvsc|
-     - GVSC: Jerry Towler (SwRI)
-   * - |tieriv|
-     - Tier IV: Jilada Eccleston
-   * - |tri|
-     - Toyota Research Institute: Ian McMahon
-   * - |windriver|
-     - Wind River: `Andrei Kholodnyi <https://github.com/razr>`__
+    <!--
+    The CSS and HTML below generate the list of TSC members.
+    It is currently using raw HTML because there was no way that I could see to make the
+    ReStructured Text "list-tables" directive make the logos a consistent size.
+    -->
+    <style>
+    table.tscclass {
+      border: 1px solid #e1e4e5;
+      border-top-color: rgb(225, 228, 229);
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-right-color: rgb(225, 228, 229);
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-bottom-color: rgb(225, 228, 229);
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-left-color: rgb(225, 228, 229);
+      border-left-style: solid;
+      border-left-width: 1px;
+      border-image-outset: 0;
+      border-image-repeat: stretch;
+      border-image-slice: 100%;
+      border-image-source: none;
+      border-image-width: 1;
+      width: 100%;
+    }
+    td.tscclass {
+      border-top-color: rgb(225, 228, 229);
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-right-color: rgb(225, 228, 229);
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-bottom-color: rgb(225, 228, 229);
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-left-color: rgb(225, 228, 229);
+      border-left-style: solid;
+      border-left-width: 1px;
+      padding-left: 15px;
+    }
+    tr.tscclass:nth-child(2n-1) {
+      background-color: #f3f6f6;
+    }
+    </style>
+    <table class="tscclass">
+      <tbody>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.adlinktech.com"><img alt="ADLINK Technology logo" src="_images/adlink.svg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>ADLINK Technology: Joe Speed</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.amazon.com"><img alt="Amazon logo" src="_images/amazon.svg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Amazon: Aaron Blasdel</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.apex.ai"><img alt="Apex.AI logo" src="_images/apex.png" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Apex.AI: Dejan Pangercic</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.bosch.com"><img alt="Bosch logo" src="_images/bosch_75h.jpg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Bosch: Karsten Knese</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://ubuntu.com"><img alt="Ubuntu logo" src="_images/ubuntu.svg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Canonical: Sid Faber</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://eprosima.com"><img alt="eProsima logo" src="_images/eprosima.svg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>eProsima: Jaime Martin Losa</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://gvsc.army.mil"><img alt="GVSC logo" src="_images/gvsc.png" style="height: 50px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>GVSC: Jerry Towler (SwRI)</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.intel.com"><img alt="Intel logo" src="_images/intel.svg" style="height: 50px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Intel: Harold Yang</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.irobot.com"><img alt="iRobot logo" src="_images/irobot.png" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>iRobot: Ori Taka</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.lg.com"><img alt="LG Electronics logo" src="_images/lge.svg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>LG Electronics: Lokesh Kumar Goel</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.microsoft.com"><img alt="Microsoft logo" src="_images/microsoft.svg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Microsoft: Lou Amadio</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.openrobotics.org"><img alt="Open Robotics logo" src="_images/openrobotics-logo-stacked.png" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Open Robotics: Chris Lalancette</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://picknik.ai"><img alt="PickNik logo" src="_images/picknik.jpg" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>PickNik: Dave Coleman</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.robotis.com"><img alt="ROBOTIS logo" src="_images/robotis.png" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>ROBOTIS: Will Son</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://roverrobotics.com"><img alt="Rover Robotics logo" src="_images/rover.png" style="height: 35px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Rover Robotics: Nick Fragale</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.samsung.com"><img alt="Samsung logo" src="_images/samsung.svg" style="height: 25px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Samsung: Steven Macenski</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.sony.com"><img alt="Sony logo" src="_images/sony.png" style="height: 60px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Sony: Tomoya Fujita</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.tri.global"><img alt="TRI logo" src="_images/tri_logo_landscape-web.svg" style="height: 50px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Toyota Research Institute: Ian McMahon</p></td>
+        </tr>
+        <tr class="tscclass">
+          <td class="tscclass" align="center"><p><a class="reference internal" href="https://www.windriver.com"><img alt="Wind River logo" src="_images/windriver.png" style="height: 60px;" /></a></p></td>
+          <td class="tscclass" align="center"><p>Wind River: Andrei Kholodnyi</p></td>
+        </tr>
+      </tbody>
+    </table>
+    <br/>
 
 If you are interested in joining the ROS 2 TSC, please inquire via info@openrobotics.org.
+
+.. toctree::
+   :maxdepth: 1
+
+   Governance/ROS2-TSC-Charter
 
 Working Groups (WGs)
 --------------------
 
-As described in its :download:`charter <Governance/ros2-tsc-charter.pdf>`, the TSC establishes working groups (WGs) to discuss and make progress on specific topics.
+As described in its :ref:`charter <ROS2TSCCharter>`, the TSC establishes working groups (WGs) to discuss and make progress on specific topics.
 
-The current WGs are (6 as of 2019-09-04):
+The current WGs are (11 as of 2021-01-12):
 
 Control
 ^^^^^^^
@@ -223,14 +247,24 @@ Manipulation
 Real-time
 ^^^^^^^^^
 
-
-* Lead(s): Dejan Pangercic, Andrei Kholodnyi
-* Resources: TODO
+* Lead(s): Andrei Kholodnyi, Carlos San Vicente
+* Resources:
 
  * `ROS 2 Real-time Working Group Community <https://github.com/ros-realtime/community>`__
  * Meeting invite group `ros-real-time-working-group-invites@googlegroups.com <https://groups.google.com/forum/#!forum/ros-real-time-working-group-invites>`_
  * Discourse tag: `wg-real-time <https://discourse.ros.org/tags/wg-real-time>`_
+ * Matrix chat `+ros-realtime:matrix.org <https://matrix.to/#/+ros-realtime:matrix.org>`_
 
+Rust
+^^^^
+
+* Lead(s): Ruffin White, Geoffrey Biggs
+* Resources:
+
+ * `Working group Community <https://github.com/ros2-rust/rust-wg>`__
+ * Meeting invite group `ros-rust-working-group-invites@googlegroups.com <https://groups.google.com/forum/#!forum/ros-rust-working-group-invites>`_
+ * Discourse tag: `wg-rust <https://discourse.ros.org/tags/wg-rust>`_
+ * Matrix chat `+rosorg-rust:matrix.org <https://matrix.to/#/+rosorg-rust:matrix.org>`_
 
 Safety
 ^^^^^^
@@ -246,7 +280,7 @@ Safety
 Security
 ^^^^^^^^
 
-* Lead(s): Sid Faber, Kyle Fazzari
+* Lead(s): Sid Faber
 * Resources:
 
  * `ROS 2 Security Working Group Community <https://github.com/ros-security/community>`__

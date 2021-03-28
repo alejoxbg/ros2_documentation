@@ -16,7 +16,7 @@ Creating custom ROS 2 msg and srv files
 Background
 ----------
 
-In previous tutorials you utilized message and service interfaces to learn about topics, services, and simple publisher/subscriber and service/client nodes.
+In previous tutorials you utilized message and service interfaces to learn about :ref:`topics <ROS2Topics>`, :ref:`services <ROS2Services>`, and simple publisher/subscriber (:ref:`C++<CppPubSub>`/:ref:`Python<PyPubSub>`) and service/client (:ref:`C++<CppSrvCli>`/:ref:`Python<PySrvCli>`) nodes.
 The interfaces you used were predefined in those cases.
 
 While it’s good practice to use predefined interface definitions, you will probably need to define your own messages and services sometimes as well.
@@ -91,7 +91,7 @@ This is your custom service that requests three integers named ``a``, ``b``, and
 
 To convert the interfaces you defined into language-specific code (like C++ and Python) so that they can be used in those languages, add the following lines to ``CMakeLists.txt``:
 
-.. code-block:: console
+.. code-block:: cmake
 
   find_package(rosidl_default_generators REQUIRED)
 
@@ -153,19 +153,10 @@ In a new terminal, run the following command from within your workspace (``dev_w
 
 Now you can confirm that your interface creation worked by using the ``ros2 interface show`` command:
 
-.. tabs::
 
-  .. group-tab:: Eloquent and newer
+.. code-block:: console
 
-    .. code-block:: console
-
-      ros2 interface show tutorial_interfaces/msg/Num
-
-  .. group-tab:: Dashing
-
-    .. code-block:: console
-
-      ros2 msg show tutorial_interfaces/msg/Num
+  ros2 interface show tutorial_interfaces/msg/Num
 
 should return:
 
@@ -175,19 +166,9 @@ should return:
 
 And
 
-.. tabs::
+.. code-block:: console
 
-  .. group-tab:: Eloquent and newer
-
-    .. code-block:: console
-
-      ros2 interface show tutorial_interfaces/srv/AddThreeInts
-
-  .. group-tab:: Dashing
-
-    .. code-block:: console
-
-      ros2 srv show tutorial_interfaces/srv/AddThreeInts
+  ros2 interface show tutorial_interfaces/srv/AddThreeInts
 
 should return:
 
@@ -208,7 +189,7 @@ A few simple modifications to the nodes, ``CMakeLists`` and ``package`` files wi
 7.1 Testing ``Num.msg`` with pub/sub
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-With some slight modifications to the publisher/subscriber package created in a previous tutorial, you can see ``Num.msg`` in action.
+With some slight modifications to the publisher/subscriber package created in a previous tutorial (:ref:`C++ <CppPubSub>` or :ref:`Python <PyPubSub>`), you can see ``Num.msg`` in action.
 Since you’ll be changing the standard string msg to a numerical one, the output will be slightly different.
 
 Publisher:
@@ -385,9 +366,9 @@ CMakeLists.txt:
 
 Add the following lines (C++ only):
 
-.. code-block:: console
+.. code-block:: cmake
 
-    ...
+    #...
 
     find_package(ament_cmake REQUIRED)
     find_package(rclcpp REQUIRED)
@@ -478,7 +459,7 @@ Since ``Num.msg`` relays only an integer, the talker should only be publishing i
 7.2 Testing ``AddThreeInts.srv`` with service/client
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-With some slight modifications to the service/client package created in a previous tutorial, you can see ``AddThreeInts.srv`` in action.
+With some slight modifications to the service/client package created in a previous tutorial (:ref:`C++ <CppSrvCli>` or :ref:`Python <PySrvCli>`), you can see ``AddThreeInts.srv`` in action.
 Since you’ll be changing the original two integer request srv to a three integer request srv, the output will be slightly different.
 
 Service:
@@ -668,9 +649,9 @@ CMakeLists.txt:
 
 Add the following lines (C++ only):
 
-.. code-block:: console
+.. code-block:: cmake
 
-    ...
+    #...
 
     find_package(ament_cmake REQUIRED)
     find_package(rclcpp REQUIRED)
